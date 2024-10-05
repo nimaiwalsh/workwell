@@ -6,6 +6,11 @@ import androidx.compose.material.icons.filled.Home
 import androidx.compose.ui.graphics.vector.ImageVector
 import kotlinx.serialization.Serializable
 
+interface NavGraph
+
+@Serializable
+object MainNavGraph : NavGraph
+
 interface Destination
 
 interface RootDestination : Destination {
