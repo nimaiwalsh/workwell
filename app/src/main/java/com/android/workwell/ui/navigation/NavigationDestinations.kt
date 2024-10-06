@@ -18,6 +18,8 @@ interface RootDestination : Destination {
     val label: String
 }
 
+fun RootDestination.route() = this::class.qualifiedName.toString()
+
 @Serializable
 object Home : RootDestination {
     override val icon: ImageVector = Icons.Filled.Home

@@ -11,6 +11,7 @@ import com.android.workwell.ui.components.NavigationBarItem.Companion.buildNavig
 import com.android.workwell.ui.navigation.Destination
 import com.android.workwell.ui.navigation.Exercises
 import com.android.workwell.ui.navigation.Home
+import com.android.workwell.ui.navigation.route
 
 @Composable
 fun BottomNavigationBar(
@@ -21,7 +22,7 @@ fun BottomNavigationBar(
     BottomAppBar {
         NavigationBar {
             buildNavigationItems(
-                currentDestination = currentRoute,
+                currentRoute = currentRoute,
                 onNavigate = onNavigate
             ).forEach { navigationItem ->
                 NavigationBarItem(
@@ -43,7 +44,7 @@ data class NavigationBarItem(
 ) {
     companion object {
         fun buildNavigationItems(
-            currentDestination: String?,
+            currentRoute: String?,
             onNavigate: (destination: Destination) -> Unit,
         ): List<NavigationBarItem> {
             return listOf(
@@ -51,7 +52,7 @@ data class NavigationBarItem(
                 Exercises,
             ).map { destination ->
                 NavigationBarItem(
-                    selected = currentDestination == destination::class.qualifiedName.toString(),
+                    selected = currentRoute == destination.route(),
                     label = {
                         Text(text = destination.label)
                     },
